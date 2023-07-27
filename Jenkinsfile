@@ -33,7 +33,7 @@ pipeline {
             }           
         }  
 
-        stage('Push Docker Image') {
+        stage('Push Docker Image1') {
             steps {
                 // Use 'sh' step to run shell commands
                 sh "docker login -u YOUR_DOCKERHUB_USERNAME -p YOUR_DOCKERHUB_PASSWORD"
