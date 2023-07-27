@@ -7,9 +7,17 @@ pipeline {
             }
         }
         
-        stage('TEST') {
+        stage('Install Dependencies') {
             steps {
-                echo "sekar"
+                // Install Node.js dependencies
+                sh 'cd backend && npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build your MERN app (if needed)
+                sh 'cd backend && npm run build'
             }
         }
         
