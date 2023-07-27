@@ -1,8 +1,14 @@
 pipeline {
     agent any
 
-    environment {     
-    DOCKERHUB_CREDENTIALS= credentials('sekardocker')     
+   environment { 
+
+        registry = "sekarfeb/jobify-app" 
+
+        registryCredential = 'sekardocker' 
+
+        dockerImage = '' 
+
     }
     stages {
         stage('Checkout') {
@@ -10,7 +16,18 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Docker Build') {
+    	        steps {
+                    script{
+                        dockerImage = docker.build registry + ":latest"
+                    }
+      	        
+            }
+        }
         
+
+
         stage('Docker Build') {
     	agent any
             steps {
