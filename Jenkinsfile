@@ -22,7 +22,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'sekardocker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
                 }
-                sh "docker push my-docker-image:latest"
+                sh "docker push jenkins-jobify-backend:latest"
             }
         }
         
