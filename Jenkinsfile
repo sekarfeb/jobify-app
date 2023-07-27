@@ -14,10 +14,11 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                // Build your MERN app (if needed)
-                sh 'cd backend && npm run build'
+                script {
+                    docker.build("my-docker-image:latest", "./backend")
+                }
             }
         }
         
