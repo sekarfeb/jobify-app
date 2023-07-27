@@ -18,7 +18,7 @@ pipeline {
     	agent any
             steps {
                 sh 'pwd'
-      	        sh 'docker build -t shanem/spring-petclinic:latest /jobify-app/backend'
+      	        sh 'cd backend && docker build -t shanem/spring-petclinic:latest .'
             }
         }
         
