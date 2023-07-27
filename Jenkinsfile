@@ -1,15 +1,7 @@
 pipeline {
     agent any
 
-   environment { 
 
-        registry = "sekarfeb/jobify-app" 
-
-        registryCredential = 'sekardocker' 
-
-        dockerImage = '' 
-
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -17,21 +9,20 @@ pipeline {
             }
         }
 
-        stage('Docker Build0') {
-    	        steps {
-                    script{
-                        dockerImage = docker.build registry + ":latest"
-                    }
-      	        
-            }
-        }
-        
-
-
         stage('Docker Build') {
     	agent any
             steps {
       	        sh 'cd backend && docker build -t sekarfeb/jenkins-jobify-backend:latest .'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                // Use 'sh' step to run shell commands with password input from stdin
+                withCredentials([usernamePassword(credentialsId: 'sekardocker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                }
+                sh "docker push my-docker-image:latest"
             }
         }
         
