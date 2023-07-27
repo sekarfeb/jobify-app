@@ -14,6 +14,14 @@ pipeline {
             }
         }
         
+
+        stage('Push Docker Image') {
+            steps {
+                // Use 'sh' step to run shell commands
+                sh "docker login -u YOUR_DOCKERHUB_USERNAME -p YOUR_DOCKERHUB_PASSWORD"
+                sh "docker push sekarfeb/jenkins-jobify-backend:latest"
+            }
+        }
         
         
         
