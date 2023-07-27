@@ -14,11 +14,10 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build') {
+    	agent any
             steps {
-                script {
-                    docker.build("my-docker-image:latest", "./backend")
-                }
+      	        sh 'docker build -t shanem/spring-petclinic:latest .'
             }
         }
         
