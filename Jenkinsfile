@@ -7,18 +7,10 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
-            steps {
-                // Install Node.js dependencies
-                sh 'cd backend && npm install'
-            }
-        }
-
         stage('Docker Build') {
     	agent any
             steps {
-                sh 'pwd'
-      	        sh 'cd backend && docker build -t shanem/spring-petclinic:latest .'
+      	        sh 'cd backend && docker build -t sekarfeb/jenkins-jobify-backend:latest .'
             }
         }
         
