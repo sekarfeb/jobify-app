@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    environment {     
+    DOCKERHUB_CREDENTIALS= credentials('sekardocker')     
+    }
     stages {
         stage('Checkout') {
             steps {
