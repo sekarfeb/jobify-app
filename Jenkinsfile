@@ -7,14 +7,14 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image - Backend') {
+        stage('Build Image - Backend') {
     	agent any
             steps {
       	        sh 'cd backend && docker build -t sekarfeb/jenkins-jobify-backend:latest .'
             }
         }
 
-        stage('Push Docker Image - Backend') {
+        stage('Push Image - Backend') {
             steps {
                 // Use 'sh' step to run shell commands with password input from stdin
                 withCredentials([usernamePassword(credentialsId: 'sekardocker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -40,14 +40,14 @@ pipeline {
             }
         }        
         
-        stage('Build Docker Image - Frontend') {
+        stage('Build Image - Frontend') {
     	agent any
             steps {
       	        sh 'cd frontend && docker build -t sekarfeb/jenkins-jobify-frontend:latest .'
             }
         }
 
-        stage('Push Docker Image - Frontend') {
+        stage('Push Image - Frontend') {
             steps {
                 // Use 'sh' step to run shell commands with password input from stdin
                 withCredentials([usernamePassword(credentialsId: 'sekardocker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
