@@ -6,6 +6,10 @@ pipeline {
         //         checkout scm
         //     }
         // }
+        triggers {
+        // Example SCM trigger using Git
+        scm('*/3 * * * *') // Poll the repository every 3 minutes for changes
+        }
 
         stage('Build Image - Backend') {
     	agent any
