@@ -22,6 +22,21 @@ pipeline {
                 }
                 sh "docker push sekarfeb/jenkins-jobify-backend:latest"
             }
+        }
+
+        stage('Deploy to GKE') {
+            steps {
+                // Authenticate with GKE using service account key
+                withCredentials([file(credentialsId: 'gke-service-account-key', variable: 'SERVICE_ACCOUNT_KEY')]) {
+                    sh "gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}"
+                }
+                
+                // Set the GKE context
+                sh "gcloud container clusters get-credentials cluster-1 --region=us-central1-c --project=amazing-thought-387010"
+
+                // Apply the Kubernetes Deployment
+                sh "kubectl apply -f path/to/deployment.yaml"
+            }
         }        
         
     }
