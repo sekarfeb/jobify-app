@@ -35,7 +35,7 @@ pipeline {
                 sh "gcloud container clusters get-credentials cluster-1 --region=us-central1-c --project=amazing-thought-387010"
 
                 // Apply the Kubernetes Deployment
-                sh "kubectl apply -f path/to/deployment.yaml"
+                sh "gcloud auth list"
             }
         }        
         
