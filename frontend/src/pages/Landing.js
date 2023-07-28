@@ -22,7 +22,7 @@ const Landing = () => {
               job <span>tracking</span> app
             </h1>
             <p>
-             Online HR Job Portal for Software company
+             Online HR Job Portal for Software company Registered
             </p>
             <Link to='/register' className='btn btn-hero'>
               Login/Register
