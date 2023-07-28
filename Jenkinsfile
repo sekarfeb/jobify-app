@@ -68,7 +68,7 @@ pipeline {
                 //sh "gcloud container clusters get-credentials cluster-1 --region=us-central1-c --project=amazing-thought-387010"
 
                 // Apply the Kubernetes Deployment
-                sh "cd backend && kubectl apply -f deployment.yaml"
+                sh "cd frontend && kubectl apply -f deployment.yaml"
             }
         }        
     }
