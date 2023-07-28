@@ -36,7 +36,7 @@ pipeline {
 
                 // Apply the Kubernetes Deployment
                 sh "kubectl get namespace"
-                sh "gcloud auth list"
+                sh "cd backend && kubectl apply -f deployment.yaml"
             }
         }        
         
