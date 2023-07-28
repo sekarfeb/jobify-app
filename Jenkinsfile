@@ -43,7 +43,7 @@ pipeline {
         stage('Build Docker Image - Frontend') {
     	agent any
             steps {
-      	        sh 'cd backend && docker build -t sekarfeb/jenkins-jobify-frontend:latest .'
+      	        sh 'cd frontend && docker build -t sekarfeb/jenkins-jobify-frontend:latest .'
             }
         }
 
