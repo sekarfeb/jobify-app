@@ -1,0 +1,47 @@
+steps:
+  # Step 1: Install dependencies for the backend (Node.js/Express.js)
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+    dir: 'backend'  # Path to the backend directory containing package.json
+
+  # Step 2: Build the backend
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    dir: 'backend'  # Path to the backend directory containing package.json
+
+  # Step 3: Build the frontend (React.js)
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+    dir: 'frontend'  # Path to the frontend directory containing package.json
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    dir: 'frontend'  # Path to the frontend directory containing package.json
+
+  # Step 4: Build and tag the Docker image for the backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/backend', 'backend']
+    dir: '.'  # Path to the root directory containing the Dockerfile for the backend
+
+  # Step 5: Build and tag the Docker image for the frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/frontend', 'frontend']
+    dir: '.'  # Path to the root directory containing the Dockerfile for the frontend
+
+  # Step 6: Push the Docker images to Google Container Registry (GCR)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/backend']
+
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'gcr.io/$PROJECT_ID/frontend']
+
+  # # Step 7: Authenticate with GKE and deploy the backend
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   args: ['auth', 'configure-docker']
+
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'backend/kubernetes-deployment.yaml']
+
+  # # Step 8: Deploy the frontend
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'frontend/kubernetes-deployment.yaml']
