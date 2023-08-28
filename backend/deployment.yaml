@@ -32,7 +32,7 @@ spec:
       port: 5000
       targetPort: 5000
   type: LoadBalancer
-  loadBalancerIP: 34.134.220.123
+  loadBalancerIP: 34.30.232.54
   
 
 

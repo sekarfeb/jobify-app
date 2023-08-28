@@ -32,6 +32,6 @@ spec:
       port: 3000
       targetPort: 3000
   type: LoadBalancer # Use the appropriate service type for your environment
-  loadBalancerIP: 35.192.187.119 # Fix this backend Ip for API calls
+  loadBalancerIP: 34.173.13.143 # Fix this backend Ip for API calls
  
 
