@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-jobify
-          image: sekarfeb/jobify-app-frontend:latest
+          image: sekarfeb/jobify-app-frontend-new:latest
           ports:
             - containerPort: 3000
 ---
